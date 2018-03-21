@@ -26,14 +26,15 @@ class Board   # Creates the Playing Board
   end
 
   def logic_board # This will be a board of zeros that turn to ones when user chooses location of their pieces
+    require Matrix
     user_board = Matrix.build(@height,@width) { |row, col| 0 }
     computer_board = Matrix.build(@height,@width) { |row,col| 0 }
-    @user_board = user_board
-    @computer_board = computer_board
+    # @user_board = user_board
+    # @computer_board = computer_board
   end
 
 
-  attr_reader :width, :height
+  attr_reader :width, :height, :user_board, :computer_board
 end
 
 class BeginningAnimation   # Does the annimation of showing the board
@@ -65,4 +66,5 @@ class BeginningAnimation   # Does the annimation of showing the board
 end
 
 BeginningAnimation.new(2.0).display_countdown
-Board.new(1, 10).print_board
+game_board = Board.new(10, 10).print_board
+game_board.logic_board

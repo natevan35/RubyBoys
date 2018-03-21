@@ -1,4 +1,4 @@
-class Board
+class Board   # Creates the Playing Board
   def initialize(width, height)
     @width = width
     @height = height
@@ -25,10 +25,18 @@ class Board
     end
   end
 
+  def logic_board # This will be a board of zeros that turn to ones when user chooses location of their pieces
+    user_board = Matrix.build(@height,@width) { |row, col| 0 }
+    computer_board = Matrix.build(@height,@width) { |row,col| 0 }
+    @user_board = user_board
+    @computer_board = computer_board
+  end
+
+
   attr_reader :width, :height
 end
 
-class BeginningAnimation
+class BeginningAnimation   # Does the annimation of showing the board
   MESSAGE = '................Creating Board................'
 
   def initialize(sleep_time)
@@ -48,10 +56,13 @@ class BeginningAnimation
     end
 
     puts "Fuck you"
+    @sleep_time = sleep_time * 10
+    sleep sleep_time
+    system "clear"
   end
 
   attr_reader :sleep_time
 end
 
-BeginningAnimation.new(4.0).display_countdown
-Board.new(10, 10).print_board
+BeginningAnimation.new(2.0).display_countdown
+Board.new(1, 10).print_board

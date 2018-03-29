@@ -5,8 +5,8 @@ class Board
   end
 
   def print_board
-    for width_integer in 0..width
-      for height_integer in 0..height
+    (0..width).each do |width_integer|#for width_integer in 0..width
+      (0..height).each do |height_integer|#for height_integer in 0..height
         if width_integer == 0 && height_integer == 0
           print "   "
           next
@@ -20,7 +20,6 @@ class Board
           print "*" + "  "
         end
       end
-
       print "\n"
     end
   end
@@ -56,5 +55,36 @@ class BeginningAnimation
   attr_reader :sleep_time
 end
 
-BeginningAnimation.new(2.0).display_countdown
+
+class UserPicksLocations
+  def initialize
+    letters = ("a".."z").to_a
+    #Columns to choose from
+    rows = ("a"..letters[9]).to_a
+    puts rows
+    columns = (1..10).to_a
+
+    # Arrays to house user input for choices
+    @row_choice = []
+    @column_choice = []
+
+    statement = <<END
+    \n\nNow you must pick where to place your ships!
+    \nPlease choose letter - number pairs according to the board above
+    \n\t - You have two: 2x1 ships and two: 3x1 ships to place on the board"
+    \nWhen prompted, please provide a row and then a column1
+    \nWe will start with the 2x1 and then finish with the 3x1
+END
+    puts statement
+
+    #Logic to allow user to pick rows and columns for ships
+    puts "#{height} #{width}"
+    #
+  end
+end
+
+
+
+#BeginningAnimation.new(2.0).display_countdown
 Board.new(10, 10).print_board
+UserPicksLocations.new
